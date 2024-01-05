@@ -1,2 +1,5 @@
 #!/usr/bin/python3
-print(f"#python is cool")
+import os
+output = "#pythoniscool"
+
+os.system('echo "{}"'.format(output))
