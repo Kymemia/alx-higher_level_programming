@@ -4,7 +4,9 @@ import math
 
 
 class MagicClass:
+    """circle class"""
     def __init___(self, r=0):
+        """define and initialize"""
         self.__radius = 0
 
         if type(r) is not float or type(r) is not int:
