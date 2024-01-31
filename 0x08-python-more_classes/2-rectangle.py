@@ -3,10 +3,9 @@
 
 
 class Rectangle:
-    """class definition"""
-
+    """Class definition"""
     def __init__(self, width=0, height=0):
-        """definition of private instance attribute"""
+        """width + height definition"""
         self.width = width
         self.height = height
 
@@ -36,6 +35,14 @@ class Rectangle:
             raise ValueError("height must be >= 0")
         self.__height = value
 
-    def __str__(self):
-        """Return string representation"""
-        return f"{{'width': {self.__width}, 'height': {self.___height}}}"
+    def area(self):
+        """public instance method
+        that returns the rectangle area"""
+        return self.__width * self.__height
+
+    def perimeter(self):
+        """public instance method
+        that returns the rectangle perimeter"""
+        if self.__width == 0 or self.__height == 0:
+            return 0
+        return self.__width * 2 + self.__height * 2
