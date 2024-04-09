@@ -8,11 +8,9 @@ console.log(myObject);
 YOUR CODE HERE
 */
 
-const incr = function() {
+myObject.incr = function () {
   this.value++;
-}
-
-myObject.incr = incr;
+};
 
 myObject.incr();
 console.log(myObject);
