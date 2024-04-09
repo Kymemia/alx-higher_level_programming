@@ -6,7 +6,7 @@ if (!isNaN(parseInt(args[0]))) {
   for (let x = 0; x < iter; x++) {
     let row = '';
     for (let y = 0; y < iter; y++) {
-      row += 'x';
+      row += 'X';
     }
     console.log(row);
   }
