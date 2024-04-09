@@ -4,6 +4,7 @@ const args = process.argv.slice(2);
 
 if (!args[0]) {
   console.log('No argument');
-} else if (!args[1]) {
-  console.log(args[0]);
+} else {
+  const parts = args[0].split(' ');
+  console.log(parts[0]);
 }
