@@ -2,12 +2,19 @@
 exports.converter = function (base) {
   return function BaseConvert (number) {
     if (number === 0) {
-      return '';
+      return 0;
     } else {
-      if (base === 16 && number % base > 9) {
-        return BaseConvert(Math.floor(number / base)) + String.fromCharCode(number % base + 55);
+      let fp = '';
+      while (number > 0) {
+        const remainder = number % base;
+        if (base === 16 && remainder > 9) {
+          fp = String.fromCharCode(remainder + 55) + fp;
+        } else {
+          fp = remainder + fp;
+        }
+        number = Math.floor(number / base);
       }
-      return BaseConvert(Math.floor(number / base)) + number % base;
+      return fp;
     }
   };
 };
