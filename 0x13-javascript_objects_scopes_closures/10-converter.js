@@ -4,11 +4,10 @@ exports.converter = function (base) {
     if (number === 0) {
       return '';
     } else {
-      let rem = number % base;
-      if (base === 16 && rem > 9) {
-        rem = String.fromCharCode(rem + 87);
+      if (base === 16 && number % base > 9) {
+        return BaseConvert(Math.floor(number / base)) + String.fromCharCode(number % base + 87);
       }
-      return BaseConvert(Math.floor(number / base)) + rem;
+      return BaseConvert(Math.floor(number / base)) + number % base;
     }
   };
 };
