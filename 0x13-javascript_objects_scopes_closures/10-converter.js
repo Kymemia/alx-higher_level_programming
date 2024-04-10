@@ -5,7 +5,7 @@ exports.converter = function (base) {
       return '';
     } else {
       if (base === 16 && number % base > 9) {
-        return BaseConvert(Math.floor(number / base)) + String.fromCharCode(number % base + 87);
+        return BaseConvert(Math.floor(number / base)) + String.fromCharCode(number % base + 55);
       }
       return BaseConvert(Math.floor(number / base)) + number % base;
     }
