@@ -1,12 +1,15 @@
 #!/usr/bin/node
 exports.converter = function (base) {
-  return function BaseConvert (number) {
-    return (function convert(numm, fp) {
-      return numm === 0
+  return (number) => {
+    return (function convert(num, fp) {
+      return num === 0
         ? fp
-        : convert(Math.floor(numm / base), (base === 16 && numm % base > 9)
-          ? String.fromCharCode(numm % base + 55) + fp
-          : numm % base + fp);
+        : convert(
+            Math.floor(num / base),
+            (base === 16 && num % base > 9)
+              ? String.fromCharCode(num % base + 55) + fp
+              : num % base + fp
+	);
     })(number, '');
   };
 };
