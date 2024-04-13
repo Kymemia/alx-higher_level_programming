@@ -1,24 +1,25 @@
 #!/usr/bin/python3
 
-"""script takes in an argument & displays all values
-in the states table of hbtn_0e_0_usa where name matches the arg"""
+"""Script takes in arguments & displays
+the values in the states table of hbtn_0e_0-usa
+where name marches the arg.
+script is safe from MySQL injections"""
+
 
 import MySQLdb
 import sys
 
 
-def myfilter_states(username, password, database, state_name):
-    """connects to the MySQL database and extracts username,
-    password, database, and state_name
+def my_safe_filter(username, password, database, state_name):
+    """connects to MySQL & retrieves username
     Args:
         username (str): MySQL username
         password (str): MySQL password
-        database (str): Database name
-        state_name (str): The name of the state to be searched
-
+        database (str): MySQL database
+        state_name (str): Name to be searched for
     Returns:
-        None
-    """
+        None"""
+
     connection = MySQLdb.connect(host='localhost',
                                  user=username,
                                  passwd=password,
@@ -27,10 +28,10 @@ def myfilter_states(username, password, database, state_name):
 
     cursor = connection.cursor()
 
-    sql_query = ("SELECT DISTINCT * FROM states "
-                 "WHERE name = '{}' ORDER BY id ASC".format(state_name))
-    cursor.execute(sql_query)
+    sql_query = ("SELECT * FROM states WHERE name = %s "
+                 "ORDER BY id ASC")
 
+    cursor.execute(sql_query, (state_name,))
     states = cursor.fetchall()
 
     for state in states:
@@ -41,7 +42,7 @@ def myfilter_states(username, password, database, state_name):
 
 
 if __name__ == "__main__":
-    """condition that checks the accurate number of args is provided"""
+    """checks if the correct number of args is provided"""
     if len(sys.argv) != 5:
         sys.exit(1)
 
@@ -50,4 +51,4 @@ if __name__ == "__main__":
     database = sys.argv[3]
     state_name = sys.argv[4]
 
-    myfilter_states(username, password, database, state_name)
+    my_safe_filter(username, password, database, state_name)
