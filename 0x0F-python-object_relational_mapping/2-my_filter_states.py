@@ -8,10 +8,8 @@ import sys
 
 
 def myfilter_states(username, password, database, state_name):
-    """
-    connects to the MySQL database and extracts username,
-    password, database, and state_name
-    """
+    """connects to the MySQL database and extracts username,
+    password, database, and state_name"""
     connection = MySQLdb.connect(host='localhost',
                                  user=username,
                                  passwd=password,
@@ -34,9 +32,7 @@ def myfilter_states(username, password, database, state_name):
 
 
 if __name__ == "__main__":
-    """
-    condition that checks the accurate number of args is provided
-    """
+    """condition that checks the accurate number of args is provided"""
     if len(sys.argv) != 5:
         sys.exit(1)
 
