@@ -13,30 +13,36 @@ def filter_cities(username, password, database, state_name):
         username (str): MySQL username
         password (str): MySQL password
         database (str): MySQL database
-        state_name (str): Name of state
+        state_name (str): Name of state to filter cities
     Returns:
         None"""
 
-    connection = MySQLdb.connect(host='localhost',
+    try:
+        connection = MySQLdb.connect(host='localhost',
                                  user=username,
                                  passwd=password,
                                  db=database,
                                  port=3306)
 
-    cursor = connection.cursor()
+        cursor = connection.cursor()
 
-    sql_query = ("SELECT cities.id, cities.name FROM cities "
-                 "JOIN states ON cities.state_id = states.id "
-                 "WHERE states.name =%s ORDER BY cities.id ASC")
+        sql_query = ("SELECT cities.id, cities.name FROM cities "
+                     "JOIN states ON cities.state_id = states.id "
+                     "WHERE states.name =%s ORDER BY cities.id ASC")
 
-    cursor.execute(sql_query, (state_name,))
-    cities = cursor.fetchall()
+        cursor.execute(sql_query, (state_name,))
+        cities = cursor.fetchall()
 
-    for city in cities:
-        print(city)
+        for city in cities:
+            print(city)
 
-    cursor.close()
-    connection.close()
+    except MySQLdb.Error as err:
+        print({err})
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
 
 
 if __name__ == "__main__":
