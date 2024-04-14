@@ -17,7 +17,7 @@ def filter_cities(username, password, database, state_name):
     Returns:
         None"""
 
-    conneciton = None
+    connection = None
     cursor = None
 
     try:
