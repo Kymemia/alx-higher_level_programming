@@ -21,6 +21,7 @@ class State(Base):
 
 
 if __name__ == "__main__":
+    """checks the value of the special variable"""
     from sqlalchemy import create_engine
     engine = create_engine('mysql://username:password@localhost:3306/database')
     Base.metadata.create_all(engine)
