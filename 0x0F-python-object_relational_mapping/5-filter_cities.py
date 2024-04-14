@@ -19,10 +19,10 @@ def filter_cities(username, password, database, state_name):
 
     try:
         connection = MySQLdb.connect(host='localhost',
-                                 user=username,
-                                 passwd=password,
-                                 db=database,
-                                 port=3306)
+                                     user=username,
+                                     passwd=password,
+                                     db=database,
+                                     port=3306)
 
         cursor = connection.cursor()
 
