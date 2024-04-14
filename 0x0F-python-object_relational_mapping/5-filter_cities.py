@@ -17,6 +17,9 @@ def filter_cities(username, password, database, state_name):
     Returns:
         None"""
 
+    conneciton = None
+    cursor = None
+
     try:
         connection = MySQLdb.connect(host='localhost',
                                      user=username,
@@ -37,7 +40,7 @@ def filter_cities(username, password, database, state_name):
             print(city)
 
     except MySQLdb.Error as err:
-        print({err})
+        print('Error: {}'.format(err))
     finally:
         if cursor:
             cursor.close()
