@@ -12,8 +12,8 @@ Base = declarative_base()
 
 
 class State(Base):
-    """class representation of State
-    that inherits from Base"""
+    """this is a class representation
+    of State that inherits from SQLAlchemy's Base class"""
     __tablename__ = 'states'
 
     id = Column(Integer(11), primary_key=True,
@@ -23,6 +23,5 @@ class State(Base):
 
 if __name__ == "__main__":
     """checks the value of the special variable"""
-    from sqlalchemy import create_engine
     engine = create_engine('mysql://username:password@localhost:3306/database')
     Base.metadata.create_all(engine)
