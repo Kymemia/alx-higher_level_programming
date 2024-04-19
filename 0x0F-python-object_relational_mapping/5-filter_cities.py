@@ -7,55 +7,25 @@ import MySQLdb
 import sys
 
 
-def filter_cities(username, password, database, state_name):
-    """connects to MySQL & retrieves all the cities
-    Args:
-        username (str): MySQL username
-        password (str): MySQL password
-        database (str): MySQL database
-        state_name (str): Name of state to filter cities
-    Returns:
-        None"""
+if __name == "__main__":
+    db = MySQLdb.connect(user=sys.argv[1],
+                         passwd=sys.argv[2],
+                         db=sys.argv[3],
+                         host='localhost',
+                         port=3306
+                         )
 
-    connection = None
-    cursor = None
+    cursor = db.cursor()
 
-    try:
-        connection = MySQLdb.connect(host='localhost',
-                                     user=username,
-                                     passwd=password,
-                                     db=database,
-                                     port=3306)
+    sql = """SELECT cities.name FROM states
+             INNER JOIN cities ON states.id = cities.state_id
+             WHERE states.name = %(state_name)s
+             ORDER BY cities.id ASC"""
 
-        cursor = connection.cursor()
+    cursor.execute(sql, {'state_name': sys.argv[4]})
+    data = cursor.fetchall()
 
-        sql_query = ("SELECT cities.id, cities.name FROM cities "
-                     "JOIN states ON cities.state_id = states.id "
-                     "WHERE states.name =%s ORDER BY cities.id ASC")
+    print(", ".join([city[0] for city in data]))
 
-        cursor.execute(sql_query, (state_name,))
-        cities = cursor.fetchall()
-
-        for city in cities:
-            print(city)
-
-    except MySQLdb.Error as err:
-        print('Error: {}'.format(err))
-    finally:
-        if cursor:
-            cursor.close()
-        if connection:
-            connection.close()
-
-
-if __name__ == "__main__":
-    """condition to check whether the correct number of args is present"""
-    if len(sys.argv) != 5:
-        sys.exit(1)
-
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
-
-    filter_cities(username, password, database, state_name)
+    cursor.close()
+    db.close()
