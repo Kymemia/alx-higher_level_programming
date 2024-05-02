@@ -5,7 +5,7 @@ found in the header of the response"""
 from urllib.request import Request, urlopen
 from sys import argv
 
-if __name__=="__main__":
+if __name__ == "__main__":
     req = Request(argv[1])
 
     with urlopen(req) as res:
