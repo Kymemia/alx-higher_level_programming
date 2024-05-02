@@ -5,7 +5,7 @@ import urllib.request
 
 url = "https://alx-intranet.hbtn.io/status"
 
-#sends a get request to the URL, reads the response body, and decodes it
+"""sends a get request to the URL, reads the response body, and decodes it"""
 with urllib.request.urlopen(url) as response:
     body = response.read()
 
