@@ -5,7 +5,7 @@ and displays the body of the response(decoded in utf-8)"""
 
 if __name__ == "__main__":
     import sys
-    import urllib.requests
+    import urllib.request
     import urllib.parse
     import urllib.error
 
