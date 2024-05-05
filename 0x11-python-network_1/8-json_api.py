@@ -14,4 +14,4 @@ if __name__ == "__main__":
         print(f"[{jsonData.get('id')}] {jsonData.get('name')}"
               if jsonData else "No result")
     except (ValueError, IndexError):
-        print("No result")
+        print("Not a valid JSON")
