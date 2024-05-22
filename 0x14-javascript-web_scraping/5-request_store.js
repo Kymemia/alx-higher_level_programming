@@ -8,5 +8,5 @@ const fileStream = fs.createWriteStream(filepath);
 request.get(url)
   .on('error', err => console.error(err))
   .pipe(fileStream)
-  .on('finish', () => console.log('success'))
+  .on('finish', () => {})
   .on('error', err => console.log(err));
