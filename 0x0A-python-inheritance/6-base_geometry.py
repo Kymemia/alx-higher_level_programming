@@ -5,7 +5,7 @@
 
 class BaseGeometry:
     """class definition"""
-    def __init__self(self):
+    def __init__(self):
         """initialization"""
         pass
 
