@@ -1,0 +1,52 @@
+#!/usr/bin/python3
+import unittest
+from io import StringIO
+from unittest.mock import patch
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+
+from my_list import MyList
+
+class TestMyList(unittest.TestCase):
+    """Test cases for MyList class"""
+
+    def test_print_sorted(self):
+        """Test the print_sorted method"""
+        my_list = MyList([3, 1, 4, 2])
+        expected_output = "[1, 2, 3, 4]\n"
+        
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            my_list.print_sorted()
+            self.assertEqual(fake_out.getvalue(), expected_output)
+
+    def test_empty_list(self):
+        """Test the print_sorted method with an empty list"""
+        my_list = MyList()
+        expected_output = "[]\n"
+        
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            my_list.print_sorted()
+            self.assertEqual(fake_out.getvalue(), expected_output)
+
+    def test_already_sorted_list(self):
+        """Test the print_sorted method with an already sorted list"""
+        my_list = MyList([1, 2, 3, 4])
+        expected_output = "[1, 2, 3, 4]\n"
+        
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            my_list.print_sorted()
+            self.assertEqual(fake_out.getvalue(), expected_output)
+
+    def test_reverse_sorted_list(self):
+        """Test the print_sorted method with a reverse sorted list"""
+        my_list = MyList([4, 3, 2, 1])
+        expected_output = "[1, 2, 3, 4]\n"
+        
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            my_list.print_sorted()
+            self.assertEqual(fake_out.getvalue(), expected_output)
+
+if __name__ == "__main__":
+    unittest.main()
